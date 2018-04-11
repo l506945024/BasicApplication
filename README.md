@@ -1,0 +1,2 @@
+# BasicApplication
+Android项目中使用到的Base类封装
