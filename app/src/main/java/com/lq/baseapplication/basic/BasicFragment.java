@@ -3,6 +3,7 @@ package com.lq.baseapplication.basic;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
@@ -83,5 +84,41 @@ public abstract class BasicFragment extends Fragment {
 
     public void logD(String str) {
         Log.d(getClass().getName(), str);
+    }
+
+    /**
+     * 跳转页面（带参数）
+     *
+     * @param cls
+     * @param bundle
+     */
+    public void skipPage(Class<?> cls, Bundle bundle) {
+        Intent intent = new Intent(mContext, cls);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
+    /**
+     * 跳转页面（待返回值）
+     *
+     * @param cls
+     * @param reqCode
+     */
+    public void skipPageForResult(Class<?> cls, int reqCode) {
+        Intent intent = new Intent(mContext, cls);
+        startActivityForResult(intent, reqCode);
+    }
+
+    /**
+     * 跳转页面（带参数、待返回值）
+     *
+     * @param cls
+     * @param bundle
+     * @param reqCode
+     */
+    public void skipPageForResult(Class<?> cls, Bundle bundle, int reqCode) {
+        Intent intent = new Intent(mContext, cls);
+        intent.putExtras(bundle);
+        startActivityForResult(intent, reqCode);
     }
 }
