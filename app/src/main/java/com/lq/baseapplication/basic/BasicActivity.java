@@ -23,37 +23,55 @@ import com.lq.baseapplication.R;
 import com.lq.baseapplication.utils.ScreenUtil;
 import com.lq.baseapplication.utils.ToastUtil;
 
+/**
+ * description: Activity基类
+ *
+ * 1.沉浸式布局
+ * 2.统一的ToolBar
+ * 3.页面跳转封装
+ * 4.打印语句
+ * 5.吐司（Toast）
+ *
+ * author: mickban.
+ * createtime: 2018/4/11 下午11:30.
+ * update: 2018/4/11.
+ * version:
+ */
 public abstract class BasicActivity extends AppCompatActivity {
     CoordinatorLayout base_container;
     AppBarLayout layout_appBar;
 
     //是否使用默认的标题栏布局
-    private boolean isUseBasicLayout = true;
+    public boolean isUseBasicLayout = true;
     //是否使用沉侵式
-    private boolean isUseFlow = false;
+    public boolean isUseFlow = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         initActivityConfig();
-
         if (isUseBasicLayout) {
             setContentView(R.layout.activity_basic);
             base_container = findViewById(R.id.base_container);
             layout_appBar = findViewById(R.id.layout_appBar);
             if (isUseFlow) {
-                setStateBarTranslucent();
+                setStateBarColorAppBar();
             }
             setContentLayout();
             initTitle();
         } else {
             setContentView(getContentView());
+            if (isUseFlow) {
+                setStateBarTranslucent();
+            }
         }
         initView();
         initData();
     }
 
+    /**
+     * 初始化页面状态
+     */
     public void initActivityConfig() {
 //        this.isUseBasicLayout = isUseBasicLayout;
 //        this.isUseFlow = isUseFlow;
