@@ -43,7 +43,7 @@ public abstract class BasicActivity extends AppCompatActivity {
             base_container = findViewById(R.id.base_container);
             layout_appBar = findViewById(R.id.layout_appBar);
             if (isUseFlow) {
-
+                setStateBarTranslucent();
             }
             setContentLayout();
             initTitle();
