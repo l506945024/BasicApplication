@@ -20,14 +20,14 @@ import com.lq.baseapplication.utils.ToastUtil;
  * A simple {@link Fragment} subclass.
  * Use the {@link BasicFragment#} factory method to
  * create an instance of this fragment.
- *
+ * <p>
  * Fragment基类
  */
 public abstract class BasicFragment extends Fragment {
 
     private Context mContext;
     private Activity mActivity;
-
+    private View mView;
     boolean isPageInitialized;//是否初始化完成
 
 
@@ -46,8 +46,8 @@ public abstract class BasicFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = LayoutInflater.from(mContext).inflate(setContentView(), null, false);
-        return view;
+        mView = LayoutInflater.from(mContext).inflate(setContentView(), null, false);
+        return mView;
     }
 
     @Override
@@ -120,5 +120,9 @@ public abstract class BasicFragment extends Fragment {
         Intent intent = new Intent(mContext, cls);
         intent.putExtras(bundle);
         startActivityForResult(intent, reqCode);
+    }
+
+    public <T extends View> T findView(int idRes) {
+        return (T) mView.findViewById(idRes);
     }
 }
